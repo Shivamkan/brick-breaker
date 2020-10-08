@@ -1,4 +1,5 @@
 import pygame
+from util import *
 
 
 class paddle:
@@ -17,3 +18,16 @@ class paddle:
 
     def draw(self, screen):
         pygame.draw.rect(screen, (0, 255, 0), self.paddle)
+
+    def handleInput(self, input):
+        for event in input:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE or event.key == pygame.K_RETURN:
+                    pass
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_LEFT] or keys[pygame.K_a]:
+            self.paddle.x -= 2
+            self.paddle.x = clamp(self.paddle.x, 0, self.width-150)
+        if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
+            self.paddle.x += 2
+            self.paddle.x = clamp(self.paddle.x, 0, self.width-150)
