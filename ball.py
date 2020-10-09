@@ -1,5 +1,5 @@
 import pygame
-
+from util import *
 
 class ball:
 
@@ -11,3 +11,6 @@ class ball:
 
     def draw(self, screen):
         pygame.draw.circle(screen, (255, 0, 255), self.pos, 10)
+
+    def move(self):
+        self.pos = listadd(self.pos,self.speed)

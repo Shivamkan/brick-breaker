@@ -7,16 +7,16 @@ class paddle:
     def __init__(self, width: int, height: int, ball):
         self.width = width
         self.height = height
-        self.paddlesize = 1
+        self.paddleSize = 1
         self.paddle = pygame.Rect(width // 2 - 75, height - 40, 150, 20)
         self.lives = 4
         self.died = 1
         self.ball = ball
 
     def changeSize(self):
-        if self.paddlesize < 0:
+        if self.paddleSize < 0:
             self.paddle.width //= 3
-            self.paddlesize -= 1
+            self.paddleSize -= 1
 
     def draw(self, screen):
         pygame.draw.rect(screen, (0, 255, 0), self.paddle)
@@ -38,5 +38,5 @@ class paddle:
 
     def launchBall(self):
         if self.died:
-            self.ball.speed = [0, 2]
+            self.ball.speed = [0, -2]
             self.died = 0

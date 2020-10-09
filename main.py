@@ -35,6 +35,7 @@ class Main:
         while True:
             self.clock.tick(60)
             self.handleinput()
+            self.ball.move()
             self.draw()
 
 
