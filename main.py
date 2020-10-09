@@ -13,7 +13,7 @@ class Main:
         self.screen = pygame.display.set_mode((width, height))
         self.width = width
         self.height = height
-        self.blocks = self.spawnbrick(10,5)
+        self.blocks = self.spawnbrick(15,10)
         self.ball = ball.ball(self.width, self.height)
         self.paddle = paddle.paddle(self.width, self.height, self.ball)
 
@@ -33,6 +33,14 @@ class Main:
         self.drawBricks()
         pygame.display.flip()
 
+    def brickCollied(self):
+        toBePoped = []
+        for x in self.blocks:
+            if x.collied(self.ball):
+                toBePoped.append(x)
+        for x in toBePoped:
+            self.blocks.pop(self.blocks.index(x))
+
     def drawBricks(self):
         for x in range(len(self.blocks)):
             self.blocks[x].draw(self.screen)
@@ -51,6 +59,7 @@ class Main:
             self.ball.move()
             self.ball.colliedMap()
             self.paddle.collied()
+            self.brickCollied()
             self.draw()
 
 

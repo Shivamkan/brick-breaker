@@ -19,10 +19,10 @@ class ball:
 
     def colliedMap(self):
         if self.ball.centerx - 15 < 0:
-            self.speed[0] *= -1
+            self.speed[0] = abs(self.speed[0])
         if self.ball.centery - 15 < 0:
-            self.speed[1] *= -1
+            self.speed[1] = abs(self.speed[1])
         if self.ball.centerx + 15 > self.width:
-            self.speed[0] *= -1
+            self.speed[0] = abs(self.speed[0]) * -1
         if self.ball.centery + 15 > self.height:
-            self.speed[1] *= -1
+            self.speed[1] = abs(self.speed[1]) * -1
