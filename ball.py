@@ -14,3 +14,13 @@ class ball:
 
     def move(self):
         self.pos = listadd(self.pos,self.speed)
+
+    def colliedMap(self):
+        if self.pos[0]-5 < 0:
+            self.speed[0] *= -1
+        if self.pos[1]-5 < 0:
+            self.speed[1] *= -1
+        if self.pos[0]+5 > self.width:
+            self.speed[0] *= -1
+        if self.pos[1]+5 > self.height:
+            self.speed[1] *= -1

@@ -36,6 +36,7 @@ class Main:
             self.clock.tick(60)
             self.handleinput()
             self.ball.move()
+            self.ball.colliedMap()
             self.draw()
 
 

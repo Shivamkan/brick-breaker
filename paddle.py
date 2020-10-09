@@ -38,5 +38,5 @@ class paddle:
 
     def launchBall(self):
         if self.died:
-            self.ball.speed = [0, -2]
+            self.ball.speed = [0, -4]
             self.died = 0
