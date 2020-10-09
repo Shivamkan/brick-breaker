@@ -9,7 +9,9 @@ class paddle:
         self.height = height
         self.paddlesize = 1
         self.paddle = pygame.Rect(width // 2 - 75, height - 40, 150, 20)
-        self.lives = 3
+        self.lives = 4
+        self.died = 1
+        self.ballSpeed = 0
 
     def changeSize(self):
         if self.paddlesize < 0:
@@ -18,16 +20,23 @@ class paddle:
 
     def draw(self, screen):
         pygame.draw.rect(screen, (0, 255, 0), self.paddle)
+        if self.died:
+            pygame.draw.circle(screen, (255, 0, 255), (self.paddle.centerx, self.paddle.y - 10), 10)
 
     def handleInput(self, input):
         for event in input:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE or event.key == pygame.K_RETURN:
-                    pass
+                    self.launchBall()
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT] or keys[pygame.K_a]:
             self.paddle.x -= 2
-            self.paddle.x = clamp(self.paddle.x, 0, self.width-150)
+            self.paddle.x = clamp(self.paddle.x, 0, self.width - 150)
         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             self.paddle.x += 2
-            self.paddle.x = clamp(self.paddle.x, 0, self.width-150)
+            self.paddle.x = clamp(self.paddle.x, 0, self.width - 150)
+
+    def launchBall(self):
+        if self.died:
+            self.ballSpeed = 2
+            self.died = 0
