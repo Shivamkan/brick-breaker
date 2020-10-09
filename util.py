@@ -1,3 +1,6 @@
+from random import randint
+
+
 def RGB(color):
     r = int(color[1:3], 16)
     g = int(color[3:5], 16)
@@ -40,18 +43,28 @@ def listdivied(list1, x):
     print('Divied By 0')
     return list1
 
-def listadd(list1,list2):
+
+def listadd(list1, list2):
     list3 = []
     for x in range(len(list1)):
-        list3.append(list1[x]+list2[x])
+        list3.append(list1[x] + list2[x])
     return list3
 
-def clamp(num,minnum,maxnum):
-    res = min(max(num,minnum),maxnum)
+
+def clamp(num, minnum, maxnum):
+    res = min(max(num, minnum), maxnum)
     return res
 
-def listloop(list1,loopby):
+
+def listloop(list1, loopby):
     list3 = []
     for x in range(len(list1)):
         list3.append(list1[x] % loopby[x])
     return list3
+
+
+def randColor():
+    R = randint(0, 200)
+    G = randint(0, 200)
+    B = randint(0, 250)
+    return (R, G, B)

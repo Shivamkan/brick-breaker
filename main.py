@@ -1,8 +1,8 @@
 import sys
-from random import randint
 import pygame
 import paddle
 import ball
+import brick
 
 
 class Main:
@@ -13,16 +13,29 @@ class Main:
         self.screen = pygame.display.set_mode((width, height))
         self.width = width
         self.height = height
-        self.blocks = []
-        self.ball = ball.ball(self.width,self.height)
+        self.blocks = self.spawnbrick(10,5)
+        self.ball = ball.ball(self.width, self.height)
         self.paddle = paddle.paddle(self.width, self.height, self.ball)
 
+    def spawnbrick(self, i, j):
+        blocks = []
+        blockwidth = (self.width//i)
+        blockheight = ((self.height / 2)//j)
+        for x in range(i):
+            for y in range(j):
+                blocks.append(brick.block(x * blockwidth + 5, (y * blockheight)+10, blockwidth - 10, blockheight - 10))
+        return blocks
 
     def draw(self):
         self.screen.fill((20, 20, 20))
         self.paddle.draw(self.screen)
         self.ball.draw(self.screen)
+        self.drawBricks()
         pygame.display.flip()
+
+    def drawBricks(self):
+        for x in range(len(self.blocks)):
+            self.blocks[x].draw(self.screen)
 
     def handleinput(self):
         input = pygame.event.get()
