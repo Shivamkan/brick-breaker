@@ -37,6 +37,7 @@ class Main:
             self.handleinput()
             self.ball.move()
             self.ball.colliedMap()
+            self.paddle.collied()
             self.draw()
 
 

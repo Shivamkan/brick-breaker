@@ -28,15 +28,21 @@ class paddle:
                     self.launchBall()
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT] or keys[pygame.K_a]:
-            self.paddle.x -= 2
+            self.paddle.x -= 4
             self.paddle.x = clamp(self.paddle.x, 0, self.width - 150)
         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
-            self.paddle.x += 2
+            self.paddle.x += 4
             self.paddle.x = clamp(self.paddle.x, 0, self.width - 150)
         if self.died:
-            self.ball.pos = (self.paddle.centerx, self.paddle.y - 10)
+            self.ball.ball.center = (self.paddle.centerx, self.paddle.y - 10)
 
     def launchBall(self):
         if self.died:
             self.ball.speed = [0, -4]
             self.died = 0
+
+    def collied(self):
+        if self.paddle.colliderect(self.ball.ball):
+            if not self.died:
+                self.ball.speed[0] = int((self.ball.ball.centerx - self.paddle.centerx) // 10)
+                self.ball.speed[1] *= -1
